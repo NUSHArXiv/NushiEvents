@@ -22,7 +22,7 @@ class EventItemAdapter(private val parentActivity: ItemListActivity,
             if (twoPane) {
                 val fragment = ItemDetailFragment().apply {
                     arguments = Bundle().apply {
-                        putString(ItemDetailFragment.ARG_ITEM_ID, item.id)
+                        putString(ItemDetailFragment.ARG_ITEM_ID, item.title)
                     }
                 }
                 parentActivity.supportFragmentManager
@@ -31,7 +31,7 @@ class EventItemAdapter(private val parentActivity: ItemListActivity,
                         .commit()
             } else {
                 val intent = Intent(v.context, ItemDetailActivity::class.java).apply {
-                    putExtra(ItemDetailFragment.ARG_ITEM_ID, item.id)
+                    putExtra(ItemDetailFragment.ARG_ITEM_ID, item.title)
                 }
                 v.context.startActivity(intent)
             }
@@ -46,7 +46,7 @@ class EventItemAdapter(private val parentActivity: ItemListActivity,
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = values[position]
-        holder.idView.text = item.id
+        holder.idView.text = item.title
         holder.contentView.text = item.content
 
         with(holder.itemView) {
