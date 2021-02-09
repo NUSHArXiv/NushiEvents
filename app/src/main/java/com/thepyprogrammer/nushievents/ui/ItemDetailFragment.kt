@@ -10,8 +10,6 @@ import android.widget.TextView
 import com.thepyprogrammer.nushievents.R
 import com.thepyprogrammer.nushievents.model.Database
 import com.thepyprogrammer.nushievents.model.Event
-import io.noties.markwon.Markwon
-import us.feras.mdv.MarkdownView
 
 /**
  * A fragment representing a single Item detail screen.
@@ -51,11 +49,7 @@ class ItemDetailFragment : Fragment() {
 
         // Show the dummy content as text in a TextView.
         item?.let {
-            val markwon = context?.let { it1 ->
-                Markwon.create(it1)
-            }
-
-            markwon?.setMarkdown(rootView.findViewById(R.id.item_detail), it.info)
+            rootView.findViewById<TextView>(R.id.item_detail).text = it.info;
 
         }
 
