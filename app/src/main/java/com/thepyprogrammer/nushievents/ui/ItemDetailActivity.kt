@@ -29,7 +29,7 @@ class ItemDetailActivity : AppCompatActivity() {
         }
 
         // Show the Up button in the action bar.
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        // supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         // savedInstanceState is non-null when there is fragment state
         // saved from previous configurations of this activity
