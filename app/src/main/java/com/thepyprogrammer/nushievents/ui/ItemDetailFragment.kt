@@ -54,6 +54,12 @@ class ItemDetailFragment : Fragment() {
             val markwon = context?.let { it1 ->
                 Markwon.create(it1)
             }
+            val src = it.info
+
+            val flavour = CommonMarkFlavourDescriptor()
+            val parsedTree = MarkdownParser(flavour).buildMarkdownTreeFromString(src)
+            val html = HtmlGenerator(src, parsedTree, flavour).generateHtml()
+            
             markwon?.setMarkdown(rootView.findViewById(R.id.item_detail), it.info)
 
         }
