@@ -29,9 +29,7 @@ class EventItemAdapter(private val parentActivity: ItemListActivity,
                         .replace(R.id.item_detail_container, fragment)
                         .commit()
             } else {
-                val intent = Intent(v.context, ItemDetailActivity::class.java).apply {
-                    putExtra(ItemDetailFragment.ARG_ITEM_ID, item.title)
-                }
+                val intent = Intent(v.context, ItemDetailActivity::class.java)
                 v.context.startActivity(intent)
             }
         }
