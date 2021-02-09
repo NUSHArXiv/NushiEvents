@@ -6,7 +6,9 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
 import android.view.MenuItem
+import com.google.android.material.appbar.CollapsingToolbarLayout
 import com.thepyprogrammer.nushievents.R
+import com.thepyprogrammer.nushievents.model.Database
 
 /**
  * An activity representing a single Item detail screen. This
@@ -38,15 +40,14 @@ class ItemDetailActivity : AppCompatActivity() {
         //
         // http://developer.android.com/guide/components/fragments.html
         //
+
+        val item = Database.currentItem
+        findViewById<CollapsingToolbarLayout>(R.id.toolbar_layout)?.title = item?.title
+
         if (savedInstanceState == null) {
             // Create the detail fragment and add it to the activity
             // using a fragment transaction.
-            val fragment = ItemDetailFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ItemDetailFragment.ARG_ITEM_ID,
-                            intent.getStringExtra(ItemDetailFragment.ARG_ITEM_ID))
-                }
-            }
+            val fragment = ItemDetailFragment()
 
             supportFragmentManager.beginTransaction()
                     .add(R.id.item_detail_container, fragment)
