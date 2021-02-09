@@ -30,7 +30,7 @@ class ItemDetailFragment : Fragment() {
         super.onCreate(savedInstanceState)
 
         item = Database.currentItem
-        activity?.findViewById<CollapsingToolbarLayout>(R.id.toolbar_layout)?.title = item?.title
+//        activity?.findViewById<CollapsingToolbarLayout>(R.id.toolbar_layout)?.title = item?.title
 
 //        arguments?.let {
 //            if (it.containsKey(ARG_ITEM_ID)) {
