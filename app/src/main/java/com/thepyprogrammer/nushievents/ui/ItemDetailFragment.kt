@@ -2,14 +2,16 @@ package com.thepyprogrammer.nushievents.ui
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
-import com.google.android.material.appbar.CollapsingToolbarLayout
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.webkit.WebView
+import android.webkit.WebViewClient
 import android.widget.TextView
 import com.thepyprogrammer.nushievents.R
 import com.thepyprogrammer.nushievents.model.Database
 import com.thepyprogrammer.nushievents.model.Event
+import java.util.*
 
 /**
  * A fragment representing a single Item detail screen.
@@ -23,24 +25,12 @@ class ItemDetailFragment : Fragment() {
      * The dummy content this fragment is presenting.
      */
     private var item: Event? = null;
+    private lateinit var content: String;
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         item = Database.currentItem
-//        activity?.findViewById<CollapsingToolbarLayout>(R.id.toolbar_layout)?.title = item?.title
-
-//        arguments?.let {
-//            if (it.containsKey(ARG_ITEM_ID)) {
-//                // Load the dummy content specified by the fragment
-//                // arguments. In a real-world scenario, use a Loader
-//                // to load content from a content provider.
-//                    val database = if (Database.currentOccurence == null) Database(resources.openRawResource(R.raw.db)) else Database.currentOccurence!!
-//                item = database.itemMap[it.getString(ARG_ITEM_ID)]
-//                activity?.findViewById<CollapsingToolbarLayout>(R.id.toolbar_layout)?.title = item?.title
-//
-//            }
-//        }
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -49,18 +39,27 @@ class ItemDetailFragment : Fragment() {
 
         // Show the dummy content as text in a TextView.
         item?.let {
-            rootView.findViewById<TextView>(R.id.item_detail).text = it.info;
+            val sc = Scanner(resources.openRawResource(R.raw.github_markdown))
+            val scBuilder = StringBuilder()
+            while(sc.hasNext()) {
+                scBuilder.append(sc.nextLine())
+            }
+
+            val hub = rootView.findViewById<WebView>(R.id.item_detail)
+
+            hub.webViewClient = object : WebViewClient() {
+                override fun shouldOverrideUrlLoading(view: WebView, url: String): Boolean {
+                    view.loadUrl(url)
+                    return false
+                }
+            }
+
+            val builder = StringBuilder("<html>\n<head>\n<style>\n").append(scBuilder.toString()).append("\n</style>\n</head>\n\n<body>\n").append(it.info).append("</body>\n</html>")
+            content = builder.toString()
+            hub.loadDataWithBaseURL(null, content, "text/html", "utf-8", null)
 
         }
 
         return rootView
-    }
-
-    companion object {
-        /**
-         * The fragment argument representing the item ID that this fragment
-         * represents.
-         */
-        const val ARG_ITEM_ID = "item_id"
     }
 }
