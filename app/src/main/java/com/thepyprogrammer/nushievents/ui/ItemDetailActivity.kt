@@ -2,10 +2,12 @@ package com.thepyprogrammer.nushievents.ui
 
 import android.content.Intent
 import android.os.Bundle
+import android.text.Html
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
 import android.view.MenuItem
+import androidx.core.text.HtmlCompat
 import com.google.android.material.appbar.CollapsingToolbarLayout
 import com.thepyprogrammer.nushievents.R
 import com.thepyprogrammer.nushievents.model.Database
@@ -24,12 +26,18 @@ class ItemDetailActivity : AppCompatActivity() {
         setSupportActionBar(findViewById(R.id.detail_toolbar))
 
         findViewById<FloatingActionButton>(R.id.fab).setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own detail action", Snackbar.LENGTH_LONG)
-                    .setAction("Action", null).show()
+            val email = Intent(Intent.ACTION_SEND)
+            email.putExtra(Intent.EXTRA_SUBJECT, Database.currentItem?.title)
+            email.putExtra(Intent.EXTRA_TEXT, HtmlCompat.fromHtml(ItemDetailFragment.content, HtmlCompat.FROM_HTML_OPTION_USE_CSS_COLORS))
+
+            //need this to prompts email client only
+            email.type = "message/rfc822";
+
+            startActivity(Intent.createChooser(email, "Send ${Database.currentItem?.title} event to..."));
         }
 
         // Show the Up button in the action bar.
-        // supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         // savedInstanceState is non-null when there is fragment state
         // saved from previous configurations of this activity
