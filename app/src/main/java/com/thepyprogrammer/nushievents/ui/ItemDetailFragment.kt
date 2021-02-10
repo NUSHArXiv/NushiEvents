@@ -25,7 +25,10 @@ class ItemDetailFragment : Fragment() {
      * The dummy content this fragment is presenting.
      */
     private var item: Event? = null;
-    private lateinit var content: String;
+
+    companion object {
+        lateinit var content: String;
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
