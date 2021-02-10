@@ -13,7 +13,6 @@ class Database internal constructor(jsonStream: InputStream) : ArrayList<Event>(
         var currentItem: Event? = null
     }
 
-    val itemMap = HashMap<String, Event>()
 
     init {
         val sc = Scanner(jsonStream)
@@ -26,7 +25,6 @@ class Database internal constructor(jsonStream: InputStream) : ArrayList<Event>(
         gson.fromJson<List<GsonEvent>>(json, sType)?.forEach {
             val ev = it.toEvent()
             add(ev)
-            itemMap[ev.title] = ev
         }
     }
 
