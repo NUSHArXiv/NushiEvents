@@ -12,7 +12,7 @@ data class GsonEvent(
         dates.forEach {
             desc.append(it + "\n")
         }
-        val event = Event(title, mutableListOf<TimeRange>(), desc.toString(), info)
+        val event = Event(title, mutableListOf(), desc.toString(), info)
         dates.forEach {
             TimeRange.fromString(it)?.let { it1 -> event.dates.add(it1) }
         }
