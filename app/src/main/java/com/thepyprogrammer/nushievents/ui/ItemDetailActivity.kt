@@ -2,6 +2,8 @@ package com.thepyprogrammer.nushievents.ui
 
 import android.content.Intent
 import android.os.Bundle
+import android.text.Html
+import android.util.Log
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.text.HtmlCompat
@@ -9,6 +11,8 @@ import com.google.android.material.appbar.CollapsingToolbarLayout
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.thepyprogrammer.nushievents.R
 import com.thepyprogrammer.nushievents.model.Database
+import java.io.File
+import java.io.PrintWriter
 
 /**
  * An activity representing a single Item detail screen. This
@@ -23,10 +27,16 @@ class ItemDetailActivity : AppCompatActivity() {
         setContentView(R.layout.activity_item_detail)
         setSupportActionBar(findViewById(R.id.detail_toolbar))
 
-        findViewById<FloatingActionButton>(R.id.fab).setOnClickListener { view ->
+        findViewById<FloatingActionButton>(R.id.fab).setOnClickListener {
+            val dbFile = File(filesDir.path.toString() + "/htm.txt")
+            if (!dbFile.exists()) dbFile.createNewFile()
+            val pw = PrintWriter(dbFile)
+            pw.println(Html.fromHtml(ItemDetailFragment.content, Html.FROM_HTML_MODE_LEGACY))
+            pw.close()
+
             val email = Intent(Intent.ACTION_SEND)
             email.putExtra(Intent.EXTRA_SUBJECT, Database.currentItem?.title)
-            email.putExtra(Intent.EXTRA_TEXT, HtmlCompat.fromHtml(ItemDetailFragment.content, HtmlCompat.FROM_HTML_OPTION_USE_CSS_COLORS))
+            email.putExtra(Intent.EXTRA_TEXT, Html.fromHtml(ItemDetailFragment.content, Html.FROM_HTML_MODE_LEGACY))
 
             //need this to prompts email client only
             email.type = "message/rfc822"
