@@ -2,13 +2,11 @@ package com.thepyprogrammer.nushievents.ui
 
 import android.content.Intent
 import android.os.Bundle
-import android.text.Html
-import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.google.android.material.snackbar.Snackbar
-import androidx.appcompat.app.AppCompatActivity
 import android.view.MenuItem
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.text.HtmlCompat
 import com.google.android.material.appbar.CollapsingToolbarLayout
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.thepyprogrammer.nushievents.R
 import com.thepyprogrammer.nushievents.model.Database
 
@@ -31,9 +29,9 @@ class ItemDetailActivity : AppCompatActivity() {
             email.putExtra(Intent.EXTRA_TEXT, HtmlCompat.fromHtml(ItemDetailFragment.content, HtmlCompat.FROM_HTML_OPTION_USE_CSS_COLORS))
 
             //need this to prompts email client only
-            email.type = "message/rfc822";
+            email.type = "message/rfc822"
 
-            startActivity(Intent.createChooser(email, "Send ${Database.currentItem?.title} event to..."));
+            startActivity(Intent.createChooser(email, "Send ${Database.currentItem?.title} to..."))
         }
 
         // Show the Up button in the action bar.
