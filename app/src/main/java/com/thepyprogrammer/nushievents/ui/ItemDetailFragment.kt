@@ -44,7 +44,7 @@ class ItemDetailFragment : Fragment() {
             val sc = Scanner(resources.openRawResource(R.raw.github_markdown))
             val scBuilder = StringBuilder()
             while (sc.hasNext()) {
-                scBuilder.append(sc.nextLine())
+                scBuilder.append(sc.nextLine() + "\n")
             }
 
             val hub = rootView.findViewById<WebView>(R.id.item_detail)
@@ -56,7 +56,7 @@ class ItemDetailFragment : Fragment() {
                 }
             }
 
-            val builder = StringBuilder("<html>\n<head>\n<style>\n").append(scBuilder.toString()).append("\n</style>\n</head>\n\n<body>\n").append(it.info).append("</body>\n</html>")
+            val builder = StringBuilder("<!DOCTYPE html>\n<html>\n<body>\n<style>\n").append(scBuilder.toString()).append("\n</style>\n").append(it.info).append("</body>\n</html>")
             content = builder.toString()
             hub.loadDataWithBaseURL(null, content, "text/html", "utf-8", null)
 
