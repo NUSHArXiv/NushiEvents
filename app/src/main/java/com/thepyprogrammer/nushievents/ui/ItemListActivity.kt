@@ -66,7 +66,7 @@ class ItemListActivity : AppCompatActivity() {
         menuInflater.inflate(R.menu.top_app_bar, menu);
 
         val item: MenuItem = menu.findItem(R.id.action_info)
-        val builder = SpannableStringBuilder("* About")
+        val builder = SpannableStringBuilder("* Additional Info")
         // replace "*" with icon
         builder.setSpan(ImageSpan(this, R.drawable.ic_info), 0, 1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
         item.title = builder
@@ -74,11 +74,16 @@ class ItemListActivity : AppCompatActivity() {
         return true;
     }
 
-    /* override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when(item.getItemId()) {
-            R.id.action_settings: return
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when(item.itemId) {
+            R.id.action_info -> {
+                Snackbar.make(findViewById<FloatingActionButton>(R.id.fab), "Replace with your own action", Snackbar.LENGTH_LONG)
+                    .setAction("Action", null).show();
+                true;
+            }
+            else -> false;
         }
-    } */
+    }
 
 
 }
