@@ -31,7 +31,7 @@ class ItemListActivity : AppCompatActivity() {
      * device.
      */
     private var twoPane: Boolean = false
-    lateinit var database: Database;
+    lateinit var database: Database
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -63,7 +63,7 @@ class ItemListActivity : AppCompatActivity() {
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        menuInflater.inflate(R.menu.top_app_bar, menu);
+        menuInflater.inflate(R.menu.top_app_bar, menu)
 
         val item: MenuItem = menu.findItem(R.id.action_info)
         val builder = SpannableStringBuilder("* Additional Info")
@@ -71,19 +71,17 @@ class ItemListActivity : AppCompatActivity() {
         builder.setSpan(ImageSpan(this, R.drawable.ic_info), 0, 1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
         item.title = builder
 
-        return true;
+        return true
     }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when(item.itemId) {
+    override fun onOptionsItemSelected(item: MenuItem) = when (item.itemId) {
             R.id.action_info -> {
                 Snackbar.make(findViewById<FloatingActionButton>(R.id.fab), "Replace with your own action", Snackbar.LENGTH_LONG)
-                    .setAction("Action", null).show();
-                true;
+                        .setAction("Action", null).show()
+                true
             }
-            else -> false;
+            else -> false
         }
-    }
 
 
 }
