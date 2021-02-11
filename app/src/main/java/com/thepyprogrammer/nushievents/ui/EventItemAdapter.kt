@@ -1,7 +1,6 @@
 package com.thepyprogrammer.nushievents.ui
 
 import android.content.Intent
-import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -21,7 +20,7 @@ class EventItemAdapter(private val parentActivity: ItemListActivity,
     init {
         onClickListener = View.OnClickListener { v ->
             val item = v.tag as Event
-            Database.currentItem = item;
+            Database.currentItem = item
             if (twoPane) {
                 val fragment = ItemDetailFragment()
                 parentActivity.supportFragmentManager
