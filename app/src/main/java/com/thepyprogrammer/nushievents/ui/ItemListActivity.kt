@@ -1,15 +1,20 @@
 package com.thepyprogrammer.nushievents.ui
 
 import android.os.Bundle
-import android.view.*
-import androidx.core.widget.NestedScrollView
+import android.text.SpannableStringBuilder
+import android.text.Spanned
+import android.text.style.ImageSpan
+import android.view.Menu
+import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.RecyclerView
 import androidx.appcompat.widget.Toolbar
+import androidx.core.widget.NestedScrollView
+import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
 import com.thepyprogrammer.nushievents.R
 import com.thepyprogrammer.nushievents.model.Database
+
 
 /**
  * An activity representing a list of Pings. This activity
@@ -59,6 +64,13 @@ class ItemListActivity : AppCompatActivity() {
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.top_app_bar, menu);
+
+        val item: MenuItem = menu.findItem(R.id.action_info)
+        val builder = SpannableStringBuilder("* About")
+        // replace "*" with icon
+        builder.setSpan(ImageSpan(this, R.drawable.ic_info), 0, 1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+        item.title = builder
+
         return true;
     }
 
