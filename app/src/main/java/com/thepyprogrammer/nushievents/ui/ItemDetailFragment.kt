@@ -1,13 +1,12 @@
 package com.thepyprogrammer.nushievents.ui
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.webkit.WebView
 import android.webkit.WebViewClient
-import android.widget.TextView
+import androidx.fragment.app.Fragment
 import com.thepyprogrammer.nushievents.R
 import com.thepyprogrammer.nushievents.model.Database
 import com.thepyprogrammer.nushievents.model.Event
@@ -24,10 +23,10 @@ class ItemDetailFragment : Fragment() {
     /**
      * The dummy content this fragment is presenting.
      */
-    private var item: Event? = null;
+    private var item: Event? = null
 
     companion object {
-        lateinit var content: String;
+        lateinit var content: String
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -44,7 +43,7 @@ class ItemDetailFragment : Fragment() {
         item?.let {
             val sc = Scanner(resources.openRawResource(R.raw.github_markdown))
             val scBuilder = StringBuilder()
-            while(sc.hasNext()) {
+            while (sc.hasNext()) {
                 scBuilder.append(sc.nextLine())
             }
 
