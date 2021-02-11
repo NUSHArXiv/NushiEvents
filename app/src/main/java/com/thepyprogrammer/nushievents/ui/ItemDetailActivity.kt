@@ -36,7 +36,12 @@ class ItemDetailActivity : AppCompatActivity() {
 
             val email = Intent(Intent.ACTION_SEND)
             email.putExtra(Intent.EXTRA_SUBJECT, Database.currentItem?.title)
-            email.putExtra(Intent.EXTRA_TEXT, Html.fromHtml(ItemDetailFragment.content, Html.FROM_HTML_MODE_LEGACY))
+            // email.putExtra(Intent.EXTRA_TEXT, Database.currentItem?.title)
+            // email.putExtra(Intent.EXTRA_HTML_TEXT, Html.fromHtml(ItemDetailFragment.content, Html.FROM_HTML_MODE_LEGACY))
+
+            //
+
+            email.putExtra(Intent.EXTRA_TEXT, HtmlCompat.fromHtml(StringBuilder("<!DOCTYPE html>\n<html>\n<body>\n").append(Database.currentItem?.info).append("</body>\n</html>").toString(), HtmlCompat.FROM_HTML_MODE_LEGACY))
 
             //need this to prompts email client only
             email.type = "message/rfc822"
