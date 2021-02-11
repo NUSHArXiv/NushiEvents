@@ -3,15 +3,14 @@ package com.thepyprogrammer.nushievents.model
 import com.google.gson.annotations.SerializedName
 
 data class GsonEvent(
-    @SerializedName("title") val title: String,
-    @SerializedName("date") val dates: MutableList<String>,
-    // @SerializedName("description") val description: String,
-    @SerializedName("info") val info: String
+        @SerializedName("title") val title: String,
+        @SerializedName("date") val dates: MutableList<String>,
+        @SerializedName("info") val info: String
 ) {
     fun toEvent(): Event {
         val desc = StringBuilder()
         dates.forEach {
-            desc.append(it+"\n")
+            desc.append(it + "\n")
         }
         val event = Event(title, mutableListOf<TimeRange>(), desc.toString(), info)
         dates.forEach {
