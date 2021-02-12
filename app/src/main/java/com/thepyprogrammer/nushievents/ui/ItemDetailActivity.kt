@@ -13,6 +13,9 @@ import com.thepyprogrammer.nushievents.R
 import com.thepyprogrammer.nushievents.model.Database
 import java.io.File
 import java.io.PrintWriter
+import java.time.LocalDateTime
+import java.time.LocalTime
+import java.time.ZoneOffset
 
 /**
  * An activity representing a single Item detail screen. This
@@ -28,25 +31,33 @@ class ItemDetailActivity : AppCompatActivity() {
         setSupportActionBar(findViewById(R.id.detail_toolbar))
 
         findViewById<FloatingActionButton>(R.id.fab).setOnClickListener {
-            val dbFile = File(filesDir.path.toString() + "/htm.txt")
-            if (!dbFile.exists()) dbFile.createNewFile()
-            val pw = PrintWriter(dbFile)
-            pw.println(Html.fromHtml(ItemDetailFragment.content, Html.FROM_HTML_MODE_LEGACY))
-            pw.close()
+            Database.currentItem?.dates?.forEach {
+                val (date, begin, end) = it
+                val allDay = begin == LocalTime.of(0, 0) && end == LocalTime.of(23, 59)
 
-            val email = Intent(Intent.ACTION_SEND)
-            email.putExtra(Intent.EXTRA_SUBJECT, Database.currentItem?.title)
-            // email.putExtra(Intent.EXTRA_TEXT, Database.currentItem?.title)
-            // email.putExtra(Intent.EXTRA_HTML_TEXT, Html.fromHtml(ItemDetailFragment.content, Html.FROM_HTML_MODE_LEGACY))
+                val intent = Intent(Intent.ACTION_EDIT)
+                intent.type = "vnd.android.cursor.item/event"
+                intent.putExtra("beginTime", date.atTime(begin).toEpochSecond(ZoneOffset.ofHours(8)))
+                intent.putExtra("allDay", allDay)
+                intent.putExtra("endTime", date.atTime(end).toEpochSecond(ZoneOffset.ofHours(8)))
+                intent.putExtra("title", Database.currentItem?.title)
 
-            //
-
-            email.putExtra(Intent.EXTRA_TEXT, HtmlCompat.fromHtml(StringBuilder("<!DOCTYPE html>\n<html>\n<body>\n").append(Database.currentItem?.info).append("</body>\n</html>").toString(), HtmlCompat.FROM_HTML_MODE_LEGACY))
-
-            //need this to prompts email client only
-            email.type = "message/rfc822"
-
-            startActivity(Intent.createChooser(email, "Send ${Database.currentItem?.title} to..."))
+                startActivity(intent)
+            }
+//
+//            val email = Intent(Intent.ACTION_SEND)
+//            email.putExtra(Intent.EXTRA_SUBJECT, Database.currentItem?.title)
+//            // email.putExtra(Intent.EXTRA_TEXT, Database.currentItem?.title)
+//            // email.putExtra(Intent.EXTRA_HTML_TEXT, Html.fromHtml(ItemDetailFragment.content, Html.FROM_HTML_MODE_LEGACY))
+//
+//            //
+//
+//            email.putExtra(Intent.EXTRA_TEXT, HtmlCompat.fromHtml(StringBuilder("<!DOCTYPE html>\n<html>\n<body>\n").append(Database.currentItem?.info).append("</body>\n</html>").toString(), HtmlCompat.FROM_HTML_MODE_LEGACY))
+//
+//            //need this to prompts email client only
+//            email.type = "message/rfc822"
+//
+//            startActivity(Intent.createChooser(email, "Send ${Database.currentItem?.title} to..."))
         }
 
         // Show the Up button in the action bar.
