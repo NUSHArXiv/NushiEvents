@@ -8,13 +8,13 @@ data class GsonEvent(
         @SerializedName("info") val info: String
 ) {
     fun toEvent(): Event {
+        val event = Event(title, mutableListOf(), "", info)
         val desc = StringBuilder()
-        dates.forEach {
-            desc.append(it + "\n")
-        }
-        val event = Event(title, mutableListOf(), desc.toString(), info)
-        dates.forEach {
-            TimeRange.fromString(it)?.let { it1 -> event.dates.add(it1) }
+        dates.forEach { date ->
+            TimeRange.fromString(date)?.let{
+                event.dates.add(it)
+                desc.append(it + "\n")
+            }
         }
         return event
     }
