@@ -4,7 +4,7 @@ import java.time.LocalDate
 import java.time.LocalTime
 import java.util.regex.Pattern
 
-class TimeRange(
+data class TimeRange(
         val date: LocalDate,
         val start: LocalTime,
         val end: LocalTime
