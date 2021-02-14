@@ -13,9 +13,10 @@ data class GsonEvent(
         dates.forEach { date ->
             TimeRange.fromString(date)?.let {
                 event.dates.add(it)
-                desc.append(it + "\n")
+                desc.append(it.toString() + "\n")
             }
         }
+        event.description = desc.toString()
         return event
     }
 
