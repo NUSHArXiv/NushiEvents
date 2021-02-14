@@ -38,7 +38,7 @@ class ItemDetailActivity : AppCompatActivity() {
                     type = "vnd.android.cursor.item/event"
                     putExtra(Events.TITLE, Database.currentItem?.title)
                     putExtra(Events.ALL_DAY, allDay)
-                    putExtra(Events.DESCRIPTION, StringBuilder("<!DOCTYPE html>\n<html>\n<body>\n").append(Database.currentItem?.info).append("</body>\n</html>").toString())
+                    putExtra(Events.DESCRIPTION, Database.currentItem?.content)
                     putExtra(Events.DTSTART, date.atTime(begin).toEpochSecond(ZoneOffset.of("+8")))
                     putExtra(Events.DTEND, date.atTime(end).toEpochSecond(ZoneOffset.of("+8")))
                 }
