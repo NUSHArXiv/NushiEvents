@@ -5,10 +5,11 @@ import com.google.gson.annotations.SerializedName
 data class GsonEvent(
     @SerializedName("title") val title: String,
     @SerializedName("date") val dates: MutableList<String>,
+    @SerializedName("text") val content: String,
     @SerializedName("info") val info: String
 ) {
     fun toEvent(): Event {
-        val event = Event(title, mutableListOf(), "", info)
+        val event = Event(title, mutableListOf(), "", content, info)
         val desc = StringBuilder()
         dates.forEach { date ->
             TimeRange.fromString(date)?.let {
