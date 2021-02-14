@@ -2,18 +2,12 @@ package com.thepyprogrammer.nushievents.ui
 
 import android.content.Intent
 import android.os.Bundle
-import android.text.Html
-import android.util.Log
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.text.HtmlCompat
 import com.google.android.material.appbar.CollapsingToolbarLayout
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.thepyprogrammer.nushievents.R
 import com.thepyprogrammer.nushievents.model.Database
-import java.io.File
-import java.io.PrintWriter
-import java.time.LocalDateTime
 import java.time.LocalTime
 import java.time.ZoneOffset
 
@@ -37,7 +31,10 @@ class ItemDetailActivity : AppCompatActivity() {
 
                 val intent = Intent(Intent.ACTION_EDIT)
                 intent.type = "vnd.android.cursor.item/event"
-                intent.putExtra("beginTime", date.atTime(begin).toEpochSecond(ZoneOffset.ofHours(8)))
+                intent.putExtra(
+                    "beginTime",
+                    date.atTime(begin).toEpochSecond(ZoneOffset.ofHours(8))
+                )
                 intent.putExtra("allDay", allDay)
                 intent.putExtra("endTime", date.atTime(end).toEpochSecond(ZoneOffset.ofHours(8)))
                 intent.putExtra("title", Database.currentItem?.title)
@@ -82,23 +79,23 @@ class ItemDetailActivity : AppCompatActivity() {
             val fragment = ItemDetailFragment()
 
             supportFragmentManager.beginTransaction()
-                    .add(R.id.item_detail_container, fragment)
-                    .commit()
+                .add(R.id.item_detail_container, fragment)
+                .commit()
         }
     }
 
     override fun onOptionsItemSelected(item: MenuItem) =
-            when (item.itemId) {
-                android.R.id.home -> {
-                    // This ID represents the Home or Up button. In the case of this
-                    // activity, the Up button is shown. For
-                    // more details, see the Navigation pattern on Android Design:
-                    //
-                    // http://developer.android.com/design/patterns/navigation.html#up-vs-back
+        when (item.itemId) {
+            android.R.id.home -> {
+                // This ID represents the Home or Up button. In the case of this
+                // activity, the Up button is shown. For
+                // more details, see the Navigation pattern on Android Design:
+                //
+                // http://developer.android.com/design/patterns/navigation.html#up-vs-back
 
-                    navigateUpTo(Intent(this, ItemListActivity::class.java))
-                    true
-                }
-                else -> super.onOptionsItemSelected(item)
+                navigateUpTo(Intent(this, ItemListActivity::class.java))
+                true
             }
+            else -> super.onOptionsItemSelected(item)
+        }
 }
