@@ -35,8 +35,10 @@ class ItemDetailFragment : Fragment() {
         item = Database.currentItem
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         val rootView = inflater.inflate(R.layout.item_detail, container, false)
 
         // Show the dummy content as text in a TextView.
@@ -56,7 +58,9 @@ class ItemDetailFragment : Fragment() {
                 }
             }
 
-            val builder = StringBuilder("<!DOCTYPE html>\n<html>\n<body>\n<style>\n").append(scBuilder.toString()).append("\n</style>\n").append(it.info).append("</body>\n</html>")
+            val builder =
+                StringBuilder("<!DOCTYPE html>\n<html>\n<body>\n<style>\n").append(scBuilder.toString())
+                    .append("\n</style>\n").append(it.info).append("</body>\n</html>")
             content = builder.toString()
             hub.loadDataWithBaseURL(null, content, "text/html", "utf-8", null)
 
