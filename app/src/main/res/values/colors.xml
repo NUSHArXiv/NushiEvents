@@ -742,4 +742,5 @@
     <color name="ec_btn_login_email_on">#80ffffff</color>
     <color name="ec_btn_login_email_off">#ffffff</color>
     <color name="orange_dark">#ff5500</color>
+    <color name="nushigh">#17A9A9</color>
 </resources>
