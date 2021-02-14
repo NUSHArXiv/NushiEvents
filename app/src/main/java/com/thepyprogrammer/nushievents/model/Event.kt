@@ -3,6 +3,6 @@ package com.thepyprogrammer.nushievents.model
 data class Event(
     val title: String,
     val dates: MutableList<TimeRange>,
-    val description: String,
+    var description: String,
     val info: String
 )
