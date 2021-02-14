@@ -2,6 +2,8 @@ package com.thepyprogrammer.nushievents.ui
 
 import android.content.Intent
 import android.os.Bundle
+import android.provider.CalendarContract.Events
+import android.text.Html
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.appbar.CollapsingToolbarLayout
@@ -10,6 +12,7 @@ import com.thepyprogrammer.nushievents.R
 import com.thepyprogrammer.nushievents.model.Database
 import java.time.LocalTime
 import java.time.ZoneOffset
+
 
 /**
  * An activity representing a single Item detail screen. This
@@ -29,17 +32,16 @@ class ItemDetailActivity : AppCompatActivity() {
                 val (date, begin, end) = it
                 val allDay = begin == LocalTime.of(0, 0) && end == LocalTime.of(23, 59)
 
-                val intent = Intent(Intent.ACTION_EDIT)
-                intent.type = "vnd.android.cursor.item/event"
-                intent.putExtra(
-                    "beginTime",
-                    date.atTime(begin).toEpochSecond(ZoneOffset.ofHours(8))
-                )
-                intent.putExtra("allDay", allDay)
-                intent.putExtra("endTime", date.atTime(end).toEpochSecond(ZoneOffset.ofHours(8)))
-                intent.putExtra("title", Database.currentItem?.title)
+                val calIntent = Intent(Intent.ACTION_INSERT).apply {
+                    type = "vnd.android.cursor.item/event"
+                    putExtra(Events.TITLE, Database.currentItem?.title)
+                    putExtra(Events.ALL_DAY, allDay)
+                    putExtra(Events.DESCRIPTION, Html.fromHtml(ItemDetailFragment.content, Html.FROM_HTML_MODE_LEGACY))
+                    putExtra(Events.DTSTART, date.atTime(begin).toEpochSecond(ZoneOffset.ofHours(8)))
+                    putExtra(Events.DTEND, date.atTime(end).toEpochSecond(ZoneOffset.ofHours(8)))
+                }
 
-                startActivity(intent)
+                startActivity(calIntent)
             }
 //
 //            val email = Intent(Intent.ACTION_SEND)
