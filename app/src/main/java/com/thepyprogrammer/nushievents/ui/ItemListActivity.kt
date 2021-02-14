@@ -36,7 +36,8 @@ class ItemListActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_item_list)
-        database = if (Database.currentOccurence == null) Database(resources.openRawResource(R.raw.db)) else Database.currentOccurence!!
+        database =
+            if (Database.currentOccurence == null) Database(resources.openRawResource(R.raw.db)) else Database.currentOccurence!!
 
         val toolbar = findViewById<Toolbar>(R.id.toolbar)
         setSupportActionBar(toolbar)
@@ -44,7 +45,7 @@ class ItemListActivity : AppCompatActivity() {
 
         findViewById<FloatingActionButton>(R.id.fab).setOnClickListener { view ->
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                    .setAction("Action", null).show()
+                .setAction("Action", null).show()
         }
 
         if (findViewById<NestedScrollView>(R.id.item_detail_container) != null) {
@@ -75,13 +76,17 @@ class ItemListActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem) = when (item.itemId) {
-            R.id.action_info -> {
-                Snackbar.make(findViewById<FloatingActionButton>(R.id.fab), "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show()
-                true
-            }
-            else -> false
+        R.id.action_info -> {
+            Snackbar.make(
+                findViewById<FloatingActionButton>(R.id.fab),
+                "Replace with your own action",
+                Snackbar.LENGTH_LONG
+            )
+                .setAction("Action", null).show()
+            true
         }
+        else -> false
+    }
 
 
 }
