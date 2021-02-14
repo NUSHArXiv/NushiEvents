@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.provider.CalendarContract.Events
 import android.text.Html
+import android.util.Log
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.appbar.CollapsingToolbarLayout
@@ -31,14 +32,15 @@ class ItemDetailActivity : AppCompatActivity() {
             Database.currentItem?.dates?.forEach {
                 val (date, begin, end) = it
                 val allDay = begin == LocalTime.of(0, 0) && end == LocalTime.of(23, 59)
-
+                Log.v("Dates", date.atTime(begin).toString())
+                Log.v("Dates", date.atTime(end).toString())
                 val calIntent = Intent(Intent.ACTION_INSERT).apply {
                     type = "vnd.android.cursor.item/event"
                     putExtra(Events.TITLE, Database.currentItem?.title)
                     putExtra(Events.ALL_DAY, allDay)
-                    putExtra(Events.DESCRIPTION, Html.fromHtml(ItemDetailFragment.content, Html.FROM_HTML_MODE_LEGACY))
-                    putExtra(Events.DTSTART, date.atTime(begin).toEpochSecond(ZoneOffset.ofHours(8)))
-                    putExtra(Events.DTEND, date.atTime(end).toEpochSecond(ZoneOffset.ofHours(8)))
+                    putExtra(Events.DESCRIPTION, StringBuilder("<!DOCTYPE html>\n<html>\n<body>\n").append(Database.currentItem?.info).append("</body>\n</html>").toString())
+                    putExtra(Events.DTSTART, date.atTime(begin).toEpochSecond(ZoneOffset.of("+8")))
+                    putExtra(Events.DTEND, date.atTime(end).toEpochSecond(ZoneOffset.of("+8")))
                 }
 
                 startActivity(calIntent)
