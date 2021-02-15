@@ -5,15 +5,15 @@ import java.time.LocalTime
 import java.util.regex.Pattern
 
 data class TimeRange(
-    val date: LocalDate,
-    val start: LocalTime,
-    val end: LocalTime
+        val date: LocalDate,
+        val start: LocalTime,
+        val end: LocalTime
 ) {
 
     companion object {
         fun fromString(s: String): TimeRange? {
             val p =
-                Pattern.compile("((\\d{2})/(\\d{2})/(\\d{4})) ((\\d{2})(\\d{2})) - ((\\d{2})(\\d{2}))")
+                    Pattern.compile("((\\d{2})/(\\d{2})/(\\d{4})) ((\\d{2})(\\d{2})) - ((\\d{2})(\\d{2}))")
             val m = p.matcher(s)
             if (!m.matches()) return null
             val date = LocalDate.of(m.group(4).toInt(), m.group(3).toInt(), m.group(2).toInt())
@@ -25,14 +25,14 @@ data class TimeRange(
 
     override fun toString(): String {
         return String.format(
-            "%02d/%02d/%04d %02d%02d - %02d%02d",
-            date.dayOfMonth,
-            date.monthValue,
-            date.year,
-            start.hour,
-            start.minute,
-            end.hour,
-            end.minute
+                "%02d/%02d/%04d %02d%02d - %02d%02d",
+                date.dayOfMonth,
+                date.monthValue,
+                date.year,
+                start.hour,
+                start.minute,
+                end.hour,
+                end.minute
         )
 //        return "${date.dayOfMonth}/${date.monthValue}/${date.year} ${start.hour}${start.minute} - ${end.hour}${end.minute}"
     }
