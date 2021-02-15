@@ -47,7 +47,8 @@ class ItemListActivity : AppCompatActivity() {
         toolbar.title = title
 
         findViewById<FloatingActionButton>(R.id.fab).setOnClickListener {
-            val intent = Intent(this@ItemListActivity, AboutActivity::class.java)
+            Database.currentOccurence = null
+            val intent = Intent(this@ItemListActivity, ItemListActivity::class.java)
             startActivity(intent)
         }
 
