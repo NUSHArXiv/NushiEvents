@@ -33,11 +33,12 @@ class ItemDetailActivity : AppCompatActivity() {
         findViewById<FloatingActionButton>(R.id.fab).setOnClickListener {
             Database.currentItem?.dates?.forEach {
                 val (date, begin, end) = it
+
                 val allDay = begin == LocalTime.of(0, 0) && end == LocalTime.of(23, 59)
+
                 val startTime = date.atTime(begin)
                 val endTime = date.atTime(end)
-                Log.v("Dates", startTime.toString())
-                Log.v("Dates", endTime.toString())
+
                 val startMillis: Long = Calendar.getInstance().run {
                     set(startTime.year, startTime.monthValue-1, startTime.dayOfMonth, startTime.hour, startTime.minute)
                     timeInMillis
@@ -46,6 +47,7 @@ class ItemDetailActivity : AppCompatActivity() {
                     set(endTime.year, endTime.monthValue-1, endTime.dayOfMonth, endTime.hour, endTime.minute)
                     timeInMillis
                 }
+
                 val calIntent = Intent(Intent.ACTION_INSERT).apply {
                     type = "vnd.android.cursor.item/event"
                     data = Events.CONTENT_URI
@@ -62,6 +64,7 @@ class ItemDetailActivity : AppCompatActivity() {
                         // date.atTime(end).atZone(ZoneId.of("Singapore/Singapore")).toEpochSecond()
                         endMillis
                     )
+                    putExtra(Events.EVENT_LOCATION, "NUS High School of Math and Science, 20 Clementi Ave 1, Singapore 129957")
                 }
 
                 startActivity(calIntent)
