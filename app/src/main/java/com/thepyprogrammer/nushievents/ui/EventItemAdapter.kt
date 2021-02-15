@@ -11,11 +11,11 @@ import com.thepyprogrammer.nushievents.model.Database
 import com.thepyprogrammer.nushievents.model.Event
 
 class EventItemAdapter(
-        val parentActivity: ItemListActivity,
-        private val values: List<Event>,
-        val twoPane: Boolean
+    val parentActivity: ItemListActivity,
+    private val values: List<Event>,
+    val twoPane: Boolean
 ) :
-        RecyclerView.Adapter<EventItemAdapter.ViewHolder>() {
+    RecyclerView.Adapter<EventItemAdapter.ViewHolder>() {
 
     private val onClickListener: View.OnClickListener = View.OnClickListener { v ->
         val item = v.tag as Event
@@ -23,9 +23,9 @@ class EventItemAdapter(
         if (twoPane) {
             val fragment = ItemDetailFragment()
             parentActivity.supportFragmentManager
-                    .beginTransaction()
-                    .replace(R.id.item_detail_container, fragment)
-                    .commit()
+                .beginTransaction()
+                .replace(R.id.item_detail_container, fragment)
+                .commit()
         } else {
             val intent = Intent(v.context, ItemDetailActivity::class.java)
             v.context.startActivity(intent)
@@ -34,7 +34,7 @@ class EventItemAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
-                .inflate(R.layout.item_list_content, parent, false)
+            .inflate(R.layout.item_list_content, parent, false)
         return ViewHolder(view)
     }
 
