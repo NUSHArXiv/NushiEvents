@@ -3,7 +3,6 @@ package com.thepyprogrammer.nushievents.model
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import java.io.InputStream
-import java.time.LocalDate
 import java.time.LocalDateTime
 import java.util.*
 
@@ -24,8 +23,8 @@ class Database internal constructor(jsonStream: InputStream) : ArrayList<Event>(
         val sType = object : TypeToken<List<GsonEvent>>() {}.type
         gson.fromJson<List<GsonEvent>>(json, sType)?.forEach {
             val ev = it.toEvent()
-            val lastDate = ev.dates[ev.dates.size - 1];
-            if(!lastDate.date.atTime(lastDate.end).isBefore(LocalDateTime.now())) add(ev)
+            val lastDate = ev.dates[ev.dates.size - 1]
+            if (!lastDate.date.atTime(lastDate.end).isBefore(LocalDateTime.now())) add(ev)
         }
     }
 
