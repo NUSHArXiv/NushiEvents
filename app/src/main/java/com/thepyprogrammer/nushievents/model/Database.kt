@@ -21,7 +21,11 @@ class Database internal constructor(jsonStream: InputStream) : ArrayList<Event>(
         val json = s.toString()
         val gson = Gson()
         val sType = object : TypeToken<List<GsonEvent>>() {}.type
-        gson.fromJson<List<GsonEvent>>(json, sType)?.forEach {
+        val gsonList = gson.fromJson<List<GsonEvent>>(json, sType)
+        gsonList?.sortedBy {
+            it.dates
+        }
+        gsonList?.forEach {
             val ev = it.toEvent()
             val lastDate = ev.dates[ev.dates.size - 1]
             if (!lastDate.date.atTime(lastDate.end).isBefore(LocalDateTime.now())) add(ev)
