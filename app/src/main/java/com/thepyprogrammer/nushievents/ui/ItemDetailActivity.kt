@@ -14,6 +14,7 @@ import com.thepyprogrammer.nushievents.model.Database
 import java.time.LocalTime
 import java.time.ZoneId
 import java.time.ZoneOffset
+import java.util.*
 
 
 /**
@@ -33,8 +34,18 @@ class ItemDetailActivity : AppCompatActivity() {
             Database.currentItem?.dates?.forEach {
                 val (date, begin, end) = it
                 val allDay = begin == LocalTime.of(0, 0) && end == LocalTime.of(23, 59)
-                Log.v("Dates", date.atTime(begin).toString())
-                Log.v("Dates", date.atTime(end).toString())
+                val startTime = date.atTime(begin)
+                val endTime = date.atTime(end)
+                Log.v("Dates", startTime.toString())
+                Log.v("Dates", endTime.toString())
+                val startMillis: Long = Calendar.getInstance().run {
+                    set(startTime.year, startTime.monthValue-1, startTime.dayOfMonth, startTime.hour, startTime.minute)
+                    timeInMillis
+                }
+                val endMillis: Long = Calendar.getInstance().run {
+                    set(endTime.year, endTime.monthValue-1, endTime.dayOfMonth, endTime.hour, endTime.minute)
+                    timeInMillis
+                }
                 val calIntent = Intent(Intent.ACTION_INSERT).apply {
                     type = "vnd.android.cursor.item/event"
                     data = Events.CONTENT_URI
@@ -43,11 +54,13 @@ class ItemDetailActivity : AppCompatActivity() {
                     putExtra(Events.DESCRIPTION, Database.currentItem?.content)
                     putExtra(
                         CalendarContract.EXTRA_EVENT_BEGIN_TIME,
-                        date.atTime(begin).atZone(ZoneId.of("Singapore/Singapore")).toEpochSecond()
+                        // date.atTime(begin).atZone(ZoneId.of("Singapore/Singapore")).toEpochSecond()
+                        startMillis
                     )
                     putExtra(
                         CalendarContract.EXTRA_EVENT_END_TIME,
-                        date.atTime(end).atZone(ZoneId.of("Singapore/Singapore")).toEpochSecond()
+                        // date.atTime(end).atZone(ZoneId.of("Singapore/Singapore")).toEpochSecond()
+                        endMillis
                     )
                 }
 
