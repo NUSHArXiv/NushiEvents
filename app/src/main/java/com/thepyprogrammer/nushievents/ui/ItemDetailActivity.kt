@@ -133,7 +133,12 @@ class ItemDetailActivity : AppCompatActivity() {
         var item: MenuItem = menu.findItem(R.id.action_info)
         var builder = SpannableStringBuilder("* Share")
         // replace "*" with icon
-        builder.setSpan(ImageSpan(this, R.drawable.ic_share), 0, 1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+        builder.setSpan(
+            ImageSpan(this, R.drawable.ic_share),
+            0,
+            1,
+            Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
+        )
         item.title = builder
 
         item = menu.findItem(R.id.action_info)
@@ -145,7 +150,12 @@ class ItemDetailActivity : AppCompatActivity() {
         item = menu.findItem(R.id.action_contact)
         builder = SpannableStringBuilder("* Contact Me")
         // replace "*" with icon
-        builder.setSpan(ImageSpan(this, R.drawable.ic_email), 0, 1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+        builder.setSpan(
+            ImageSpan(this, R.drawable.ic_email),
+            0,
+            1,
+            Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
+        )
         item.title = builder
 
         return true
@@ -167,11 +177,16 @@ class ItemDetailActivity : AppCompatActivity() {
                 val currItem = Database.currentItem
                 val sendIntent: Intent = Intent().apply {
                     action = Intent.ACTION_SEND
-                    putExtra(Intent.EXTRA_TEXT, StringBuilder().append(currItem?.title+"\n\n").append(currItem?.dates?.joinToString("\n")).append("\n\n"+currItem?.content+"\n\n").toString())
+                    putExtra(
+                        Intent.EXTRA_TEXT,
+                        StringBuilder().append(currItem?.title + "\n\n")
+                            .append(currItem?.dates?.joinToString("\n"))
+                            .append("\n\n" + currItem?.content + "\n\n").toString()
+                    )
                     type = "text/plain"
                 }
 
-                val shareIntent = Intent.createChooser(sendIntent, "Share "+currItem?.title)
+                val shareIntent = Intent.createChooser(sendIntent, "Share " + currItem?.title)
                 startActivity(shareIntent)
                 true
             }
