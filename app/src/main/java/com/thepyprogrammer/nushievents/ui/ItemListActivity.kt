@@ -60,7 +60,7 @@ class ItemListActivity : AppCompatActivity() {
     }
 
     private fun setupRecyclerView(recyclerView: RecyclerView) {
-        recyclerView.adapter = EventItemAdapter(this, database, twoPane)
+        recyclerView.adapter = EventItemAdapter(this, recyclerView, database, twoPane)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
