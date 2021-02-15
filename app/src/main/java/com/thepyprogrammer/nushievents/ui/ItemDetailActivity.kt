@@ -4,6 +4,10 @@ import android.content.Intent
 import android.os.Bundle
 import android.provider.CalendarContract
 import android.provider.CalendarContract.Events
+import android.text.SpannableStringBuilder
+import android.text.Spanned
+import android.text.style.ImageSpan
+import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.appbar.CollapsingToolbarLayout
@@ -122,6 +126,18 @@ class ItemDetailActivity : AppCompatActivity() {
         }
     }
 
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.top_app_bar, menu)
+
+        val item: MenuItem = menu.findItem(R.id.action_info)
+        val builder = SpannableStringBuilder("* Additional Info")
+        // replace "*" with icon
+        builder.setSpan(ImageSpan(this, R.drawable.ic_info), 0, 1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+        item.title = builder
+
+        return true
+    }
+
     override fun onOptionsItemSelected(item: MenuItem) =
         when (item.itemId) {
             android.R.id.home -> {
@@ -132,6 +148,11 @@ class ItemDetailActivity : AppCompatActivity() {
                 // http://developer.android.com/design/patterns/navigation.html#up-vs-back
 
                 navigateUpTo(Intent(this, ItemListActivity::class.java))
+                true
+            }
+            R.id.action_info -> {
+                val intent = Intent(this, AboutActivity::class.java)
+                startActivity(intent)
                 true
             }
             else -> super.onOptionsItemSelected(item)
