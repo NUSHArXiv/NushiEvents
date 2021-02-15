@@ -1,6 +1,7 @@
 package com.thepyprogrammer.nushievents.ui
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.text.SpannableStringBuilder
 import android.text.Spanned
@@ -36,8 +37,15 @@ class AboutActivity : AppCompatActivity() {
                 true
             }
             R.id.action_info -> {
-                val intent = Intent(this, AboutActivity::class.java)
+                val intent = Intent(this@AboutActivity, AboutActivity::class.java)
                 startActivity(intent)
+                true
+            }
+            R.id.action_contact -> {
+                val email = Intent(Intent.ACTION_SENDTO).apply {
+                    data = Uri.parse("mailto:h1810124@nushigh.edu.sg")
+                }
+                startActivity(Intent.createChooser(email, "Contact Creator..."))
                 true
             }
             else -> super.onOptionsItemSelected(item)
