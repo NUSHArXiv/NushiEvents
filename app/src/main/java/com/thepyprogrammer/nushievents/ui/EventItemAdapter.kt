@@ -18,25 +18,18 @@ class EventItemAdapter(
 ) :
     RecyclerView.Adapter<EventItemAdapter.ViewHolder>() {
 
-    private val onClickListener: View.OnClickListener
-
-    init {
-        if(Database.currentItem != null)
-            Database.currentOccurence?.indexOf(Database.currentItem)?.let { recyclerView.layoutManager?.scrollToPosition(it) }
-
-        onClickListener = View.OnClickListener { v ->
-            val item = v.tag as Event
-            Database.currentItem = item
-            if (twoPane) {
-                val fragment = ItemDetailFragment()
-                parentActivity.supportFragmentManager
-                    .beginTransaction()
-                    .replace(R.id.item_detail_container, fragment)
-                    .commit()
-            } else {
-                val intent = Intent(v.context, ItemDetailActivity::class.java)
-                v.context.startActivity(intent)
-            }
+    private val onClickListener: View.OnClickListener = View.OnClickListener { v ->
+        val item = v.tag as Event
+        Database.currentItem = item
+        if (twoPane) {
+            val fragment = ItemDetailFragment()
+            parentActivity.supportFragmentManager
+                .beginTransaction()
+                .replace(R.id.item_detail_container, fragment)
+                .commit()
+        } else {
+            val intent = Intent(v.context, ItemDetailActivity::class.java)
+            v.context.startActivity(intent)
         }
     }
 
