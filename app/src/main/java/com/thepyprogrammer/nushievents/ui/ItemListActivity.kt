@@ -9,6 +9,7 @@ import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.widget.NestedScrollView
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -65,7 +66,10 @@ class ItemListActivity : AppCompatActivity() {
         if(Database.currentItem != null)
             Database.currentOccurence?.indexOf(Database.currentItem)?.let { layoutManager.scrollToPosition(it) }
         recyclerView.layoutManager = layoutManager
-        recyclerView.adapter = EventItemAdapter(this, database, twoPane)
+        val adapter = EventItemAdapter(this, database, twoPane)
+        recyclerView.adapter = adapter
+        val itemTouchHelper = ItemTouchHelper(SwipeToOpenCallback(adapter))
+        itemTouchHelper.attachToRecyclerView(recyclerView)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
