@@ -1,4 +1,4 @@
-package com.thepyprogrammer.nushievents.model
+package com.thepyprogrammer.nushievents.model.time
 
 import java.time.LocalDate
 import java.time.LocalTime
