@@ -12,7 +12,7 @@ class Database internal constructor(jsonStream: InputStream) : ArrayList<Event>(
         var currentOccurence: Database? = null
         var currentItem: Event? = null
     }
-    
+
     init {
         val sc = Scanner(jsonStream)
         val s = StringBuilder()
@@ -22,7 +22,7 @@ class Database internal constructor(jsonStream: InputStream) : ArrayList<Event>(
         val gson = Gson()
         val sType = object : TypeToken<List<GsonEvent>>() {}.type
         gson.fromJson<List<GsonEvent>>(json, sType)?.sortedBy {
-            val end = it.dates[it.dates.size - 1]
+            val end = it.dates[0]
             val day = end.split(Pattern.compile(" "), 2).toTypedArray()
             val date = day[0].split("/").toTypedArray().reversed().joinToString(separator = " ")
             date + day[1]
