@@ -12,7 +12,6 @@ import com.thepyprogrammer.nushievents.model.Event
 
 class EventItemAdapter(
     private val parentActivity: ItemListActivity,
-    private val recyclerView: RecyclerView,
     private val values: List<Event>,
     private val twoPane: Boolean
 ) :
