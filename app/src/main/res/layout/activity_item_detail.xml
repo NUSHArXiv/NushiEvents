@@ -22,7 +22,7 @@
             android:fitsSystemWindows="true"
             app:contentScrim="?attr/colorPrimary"
             app:maxLines="3"
-            app:menu="@menu/top_app_bar"
+            app:menu="@menu/detail_app_bar"
             app:layout_scrollFlags="scroll|exitUntilCollapsed"
             app:toolbarId="@+id/toolbar">
 
