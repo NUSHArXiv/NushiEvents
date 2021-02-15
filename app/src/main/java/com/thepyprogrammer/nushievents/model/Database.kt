@@ -5,6 +5,7 @@ import com.google.gson.reflect.TypeToken
 import java.io.InputStream
 import java.time.LocalDateTime
 import java.util.*
+import java.util.regex.Pattern
 
 class Database internal constructor(jsonStream: InputStream) : ArrayList<Event>() {
     companion object {
@@ -22,7 +23,10 @@ class Database internal constructor(jsonStream: InputStream) : ArrayList<Event>(
         val gson = Gson()
         val sType = object : TypeToken<List<GsonEvent>>() {}.type
         gson.fromJson<List<GsonEvent>>(json, sType)?.sortedBy {
-            it.dates[it.dates.size-1]
+            val end = it.dates[it.dates.size-1]
+            val day = end.split(Pattern.compile(" "), 2).toTypedArray()
+            val date = day[0].split("/").reversed().joinToString(separator = " ")
+            date + day[1]
         }?.forEach {
             val ev = it.toEvent()
             val lastDate = ev.dates[ev.dates.size - 1]
