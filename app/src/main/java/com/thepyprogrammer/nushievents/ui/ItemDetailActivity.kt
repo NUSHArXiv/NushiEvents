@@ -40,6 +40,7 @@ class ItemDetailActivity : AppCompatActivity() {
                     set(startTime.year, startTime.monthValue - 1, startTime.dayOfMonth, startTime.hour, startTime.minute)
                     timeInMillis
                 }
+
                 val endMillis: Long = Calendar.getInstance().run {
                     set(endTime.year, endTime.monthValue - 1, endTime.dayOfMonth, endTime.hour, endTime.minute)
                     timeInMillis
