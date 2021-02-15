@@ -8,4 +8,16 @@
     values-round/strings.xml for round devices.
     -->
     <string name="hello_world">Hello Square World!</string>
+
+    <string name="main">My Profile</string>
+    <string name="interests">Interests</string>
+    <string name="github">GitHub</string>
+    <string name="self">My name is Prannaya Gupta.\nAnd I am from M21404.</string>
+    <string name="contact">You can contact me at prannayagupta@gmail.com</string>
+    <string name="enjoy">I enjoy all of the following:</string>
+    <string name="myInterests">Machine Learning\nPhysics\nPython\nCalculus\nLinear Algebra\nQuantum Physics\nSitcoms\nJupyter Notebook\nWeb Development\nApp Development</string>
+    <string name="profileHead">My Profile</string>
+    <string name="interestsHead">My Interests</string>
+    <string name="githubHead">My GitHub Profile</string>
+    <string name="profilePic">My Profile Picture</string>
 </resources>
