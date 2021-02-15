@@ -1,5 +1,6 @@
 package com.thepyprogrammer.nushievents.ui
 
+import android.content.Intent
 import android.os.Bundle
 import android.text.SpannableStringBuilder
 import android.text.Spanned
@@ -86,12 +87,8 @@ class ItemListActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem) = when (item.itemId) {
         R.id.action_info -> {
-            Snackbar.make(
-                    findViewById<FloatingActionButton>(R.id.fab),
-                    "Replace with your own action",
-                    Snackbar.LENGTH_LONG
-            )
-                    .setAction("Action", null).show()
+            val intent = Intent(this@ItemListActivity, AboutActivity::class.java)
+            startActivity(intent)
             true
         }
         else -> false
