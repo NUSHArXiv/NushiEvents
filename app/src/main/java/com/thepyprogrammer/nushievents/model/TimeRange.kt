@@ -24,7 +24,16 @@ data class TimeRange(
     }
 
     override fun toString(): String {
-        return String.format("%02d/%02d/%04d %02d%02d - %02d%02d", date.dayOfMonth, date.monthValue, date.year, start.hour, start.minute, end.hour, end.minute)
+        return String.format(
+            "%02d/%02d/%04d %02d%02d - %02d%02d",
+            date.dayOfMonth,
+            date.monthValue,
+            date.year,
+            start.hour,
+            start.minute,
+            end.hour,
+            end.minute
+        )
 //        return "${date.dayOfMonth}/${date.monthValue}/${date.year} ${start.hour}${start.minute} - ${end.hour}${end.minute}"
     }
 }
