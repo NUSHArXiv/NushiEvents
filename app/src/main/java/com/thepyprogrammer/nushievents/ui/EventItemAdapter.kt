@@ -11,13 +11,13 @@ import com.thepyprogrammer.nushievents.model.Database
 import com.thepyprogrammer.nushievents.model.Event
 
 class EventItemAdapter(
-    private val parentActivity: ItemListActivity,
+    val parentActivity: ItemListActivity,
     private val values: List<Event>,
-    private val twoPane: Boolean
+    val twoPane: Boolean
 ) :
     RecyclerView.Adapter<EventItemAdapter.ViewHolder>() {
 
-    private val onClickListener: View.OnClickListener = View.OnClickListener { v ->
+    val onClickListener: View.OnClickListener = View.OnClickListener { v ->
         val item = v.tag as Event
         Database.currentItem = item
         if (twoPane) {
