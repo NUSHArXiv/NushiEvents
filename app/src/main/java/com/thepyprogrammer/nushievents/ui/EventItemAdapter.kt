@@ -17,7 +17,7 @@ class EventItemAdapter(
 ) :
     RecyclerView.Adapter<EventItemAdapter.ViewHolder>() {
 
-    val onClickListener: View.OnClickListener = View.OnClickListener { v ->
+    private val onClickListener: View.OnClickListener = View.OnClickListener { v ->
         val item = v.tag as Event
         Database.currentItem = item
         if (twoPane) {
