@@ -9,7 +9,7 @@ data class GsonEvent(
         @SerializedName("text") val content: String,
         @SerializedName("info") val info: String
 ) {
-    fun toEvent(): () -> Event = {
+    fun toEvent(): Event {
         val event = Event(title, mutableListOf(), "", content, info)
         val desc = StringBuilder()
         dates.sort()
@@ -20,7 +20,7 @@ data class GsonEvent(
             }
         }
         event.description = desc.toString()
-        event
+        return event
     }
 
 }
