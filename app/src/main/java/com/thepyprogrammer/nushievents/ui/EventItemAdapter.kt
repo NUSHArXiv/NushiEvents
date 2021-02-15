@@ -22,7 +22,7 @@ class EventItemAdapter(
 
     init {
         if(Database.currentItem != null)
-            recyclerView.requestFocus(Database.indexOfFirst(Database.currentItem))
+            Database.currentOccurence?.indexOf(Database.currentItem)?.let { recyclerView.requestFocus(it) }
 
         onClickListener = View.OnClickListener { v ->
             val item = v.tag as Event
