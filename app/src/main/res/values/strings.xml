@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">NushiEvents</string>
     <string name="title_item_detail">Item Detail</string>
+    <string name="nushAddress">NUS High School of Math and Science, 20 Clementi Ave 1, Singapore 129957</string>
 </resources>
