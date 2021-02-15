@@ -2,8 +2,8 @@ package com.thepyprogrammer.nushievents.ui
 
 import android.content.Intent
 import android.os.Bundle
-import android.provider.CalendarContract.Events
 import android.provider.CalendarContract
+import android.provider.CalendarContract.Events
 import android.util.Log
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
@@ -40,8 +40,14 @@ class ItemDetailActivity : AppCompatActivity() {
                     putExtra(Events.TITLE, Database.currentItem?.title)
                     putExtra(Events.ALL_DAY, allDay)
                     putExtra(Events.DESCRIPTION, Database.currentItem?.content)
-                    putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME, date.atTime(begin).toEpochSecond(ZoneOffset.of("+8")))
-                    putExtra(CalendarContract.EXTRA_EVENT_END_TIME, date.atTime(end).toEpochSecond(ZoneOffset.of("+8")))
+                    putExtra(
+                        CalendarContract.EXTRA_EVENT_BEGIN_TIME,
+                        date.atTime(begin).toEpochSecond(ZoneOffset.of("+8"))
+                    )
+                    putExtra(
+                        CalendarContract.EXTRA_EVENT_END_TIME,
+                        date.atTime(end).toEpochSecond(ZoneOffset.of("+8"))
+                    )
                 }
 
                 startActivity(calIntent)
