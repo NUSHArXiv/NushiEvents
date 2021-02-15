@@ -18,24 +18,12 @@
         android:theme="@style/Theme.NushiEvents">
         <activity
             android:name=".ui.AboutActivity"
-            android:label="@string/title_activity_about">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            android:label="@string/title_activity_about"
+            android:parentActivityName=".ui.ItemListActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.thepyprogrammer.nushievents.ui.ItemListActivity" />
         </activity>
-
-        <uses-library
-            android:name="com.google.android.wearable"
-            android:required="true" />
-        <!--
-               Set to true if your app is Standalone, that is, it does not require the handheld
-               app to run.
-        -->
-        <meta-data
-            android:name="com.google.android.wearable.standalone"
-            android:value="true" />
 
         <activity
             android:name=".ui.ItemListActivity"
