@@ -11,7 +11,7 @@
         android:layout_width="226dp"
         android:layout_height="226dp"
         android:background="@drawable/me"
-        android:contentDescription="My Profile Picture" />
+        android:contentDescription="@string/profilePic" />
 
     <TextView android:text="@string/self"
         android:layout_width="match_parent"
