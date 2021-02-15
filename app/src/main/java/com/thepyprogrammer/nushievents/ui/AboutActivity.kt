@@ -31,16 +31,27 @@ class AboutActivity : AppCompatActivity() {
                 navigateUpTo(Intent(this, ItemListActivity::class.java))
                 true
             }
+            R.id.action_info -> {
+                val intent = Intent(this, AboutActivity::class.java)
+                startActivity(intent)
+                true
+            }
             else -> super.onOptionsItemSelected(item)
         }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.top_app_bar, menu)
 
-        val item: MenuItem = menu.findItem(R.id.action_info)
-        val builder = SpannableStringBuilder("* Additional Info")
+        var item: MenuItem = menu.findItem(R.id.action_info)
+        var builder = SpannableStringBuilder("* About")
         // replace "*" with icon
         builder.setSpan(ImageSpan(this, R.drawable.ic_info), 0, 1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+        item.title = builder
+
+        item = menu.findItem(R.id.action_contact)
+        builder = SpannableStringBuilder("* Contact Me")
+        // replace "*" with icon
+        builder.setSpan(ImageSpan(this, R.drawable.ic_email), 0, 1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
         item.title = builder
 
         return true
