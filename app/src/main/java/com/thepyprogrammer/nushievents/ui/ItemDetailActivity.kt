@@ -131,7 +131,13 @@ class ItemDetailActivity : AppCompatActivity() {
         menuInflater.inflate(R.menu.top_app_bar, menu)
 
         var item: MenuItem = menu.findItem(R.id.action_info)
-        var builder = SpannableStringBuilder("* About")
+        var builder = SpannableStringBuilder("* Share")
+        // replace "*" with icon
+        builder.setSpan(ImageSpan(this, R.drawable.ic_share), 0, 1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+        item.title = builder
+
+        item = menu.findItem(R.id.action_info)
+        builder = SpannableStringBuilder("* About")
         // replace "*" with icon
         builder.setSpan(ImageSpan(this, R.drawable.ic_info), 0, 1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
         item.title = builder
@@ -155,6 +161,18 @@ class ItemDetailActivity : AppCompatActivity() {
                 // http://developer.android.com/design/patterns/navigation.html#up-vs-back
 
                 navigateUpTo(Intent(this@ItemDetailActivity, ItemListActivity::class.java))
+                true
+            }
+            R.id.action_share -> {
+                val currItem = Database.currentItem
+                val sendIntent: Intent = Intent().apply {
+                    action = Intent.ACTION_SEND
+                    putExtra(Intent.EXTRA_TEXT, StringBuilder().append(currItem?.title+"\n\n").append(currItem?.dates?.joinToString("\n")).append("\n\n"+currItem?.content+"\n\n").toString())
+                    type = "text/plain"
+                }
+
+                val shareIntent = Intent.createChooser(sendIntent, "Share "+currItem?.title)
+                startActivity(shareIntent)
                 true
             }
             R.id.action_info -> {
