@@ -22,7 +22,7 @@ class EventItemAdapter(
 
     init {
         if(Database.currentItem != null)
-            Database.currentOccurence?.indexOf(Database.currentItem)?.let { recyclerView.scrollToPosition(it) }
+            Database.currentOccurence?.indexOf(Database.currentItem)?.let { recyclerView.layoutManager?.scrollToPosition(it) }
 
         onClickListener = View.OnClickListener { v ->
             val item = v.tag as Event
