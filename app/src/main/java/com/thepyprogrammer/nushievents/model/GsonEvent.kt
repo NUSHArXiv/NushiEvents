@@ -11,6 +11,7 @@ data class GsonEvent(
     fun toEvent(): Event {
         val event = Event(title, mutableListOf(), "", content, info)
         val desc = StringBuilder()
+        dates.sort()
         dates.forEach { date ->
             TimeRange.fromString(date)?.let {
                 event.dates.add(it)
