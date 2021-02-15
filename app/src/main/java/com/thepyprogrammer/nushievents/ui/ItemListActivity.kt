@@ -9,6 +9,7 @@ import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.widget.NestedScrollView
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
@@ -60,6 +61,9 @@ class ItemListActivity : AppCompatActivity() {
     }
 
     private fun setupRecyclerView(recyclerView: RecyclerView) {
+        recyclerView.layoutManager = LinearLayoutManager(this)
+        if(Database.currentItem != null)
+            Database.currentOccurence?.indexOf(Database.currentItem)?.let { recyclerView.layoutManager?.scrollToPosition(it) }
         recyclerView.adapter = EventItemAdapter(this, recyclerView, database, twoPane)
     }
 
