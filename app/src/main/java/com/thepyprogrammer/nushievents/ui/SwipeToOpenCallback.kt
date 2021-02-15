@@ -8,11 +8,16 @@ import com.thepyprogrammer.nushievents.model.Database
 import com.thepyprogrammer.nushievents.model.Event
 
 class SwipeToOpenCallback(
-        private val adapter: EventItemAdapter,
-        dragDirs: Int = 0,
-        swipeDirs: Int = ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT) : ItemTouchHelper.SimpleCallback(dragDirs, swipeDirs) {
+    private val adapter: EventItemAdapter,
+    dragDirs: Int = 0,
+    swipeDirs: Int = ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT
+) : ItemTouchHelper.SimpleCallback(dragDirs, swipeDirs) {
 
-    override fun onMove(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder, target: RecyclerView.ViewHolder): Boolean {
+    override fun onMove(
+        recyclerView: RecyclerView,
+        viewHolder: RecyclerView.ViewHolder,
+        target: RecyclerView.ViewHolder
+    ): Boolean {
         TODO("Not yet implemented")
     }
 
@@ -23,9 +28,9 @@ class SwipeToOpenCallback(
         if (adapter.twoPane) {
             val fragment = ItemDetailFragment()
             adapter.parentActivity.supportFragmentManager
-                    .beginTransaction()
-                    .replace(R.id.item_detail_container, fragment)
-                    .commit()
+                .beginTransaction()
+                .replace(R.id.item_detail_container, fragment)
+                .commit()
         } else {
             val intent = Intent(v.context, ItemDetailActivity::class.java)
             v.context.startActivity(intent)
