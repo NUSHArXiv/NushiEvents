@@ -12,6 +12,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.thepyprogrammer.nushievents.R
 import com.thepyprogrammer.nushievents.model.Database
 import java.time.LocalTime
+import java.time.ZoneId
 import java.time.ZoneOffset
 
 
@@ -42,11 +43,11 @@ class ItemDetailActivity : AppCompatActivity() {
                     putExtra(Events.DESCRIPTION, Database.currentItem?.content)
                     putExtra(
                         CalendarContract.EXTRA_EVENT_BEGIN_TIME,
-                        date.atTime(begin).toEpochSecond(ZoneOffset.of("+8"))
+                        date.atTime(begin).atZone(ZoneId.of("Singapore/Singapore")).toEpochSecond()
                     )
                     putExtra(
                         CalendarContract.EXTRA_EVENT_END_TIME,
-                        date.atTime(end).toEpochSecond(ZoneOffset.of("+8"))
+                        date.atTime(end).atZone(ZoneId.of("Singapore/Singapore")).toEpochSecond()
                     )
                 }
 
