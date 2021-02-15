@@ -36,6 +36,7 @@ class ItemDetailActivity : AppCompatActivity() {
                 Log.v("Dates", date.atTime(end).toString())
                 val calIntent = Intent(Intent.ACTION_INSERT).apply {
                     type = "vnd.android.cursor.item/event"
+                    data = Events.CONTENT_URI
                     putExtra(Events.TITLE, Database.currentItem?.title)
                     putExtra(Events.ALL_DAY, allDay)
                     putExtra(Events.DESCRIPTION, Database.currentItem?.content)
