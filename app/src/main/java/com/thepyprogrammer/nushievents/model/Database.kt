@@ -25,7 +25,7 @@ class Database internal constructor(jsonStream: InputStream) : ArrayList<Event>(
         gson.fromJson<List<GsonEvent>>(json, sType)?.sortedBy {
             val end = it.dates[it.dates.size-1]
             val day = end.split(Pattern.compile(" "), 2).toTypedArray()
-            val date = day[0].split("/").reversed().joinToString(separator = " ")
+            val date = day[0].split("/").toTypedArray().reversed().joinToString(separator = " ")
             date + day[1]
         }?.forEach {
             val ev = it.toEvent()
