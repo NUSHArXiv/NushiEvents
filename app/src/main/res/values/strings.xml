@@ -2,7 +2,7 @@
     <string name="app_name">NushiEvents</string>
     <string name="title_item_detail">Item Detail</string>
     <string name="nushAddress">NUS High School of Math and Science, 20 Clementi Ave 1, Singapore 129957</string>
-    <string name="title_activity_about">AboutActivity</string>
+    <string name="title_activity_about">About=</string>
     <!--
     This string is used for square devices and overridden by hello_world in
     values-round/strings.xml for round devices.
@@ -13,7 +13,7 @@
     <string name="interests">Interests</string>
     <string name="github">GitHub</string>
     <string name="self">My name is Prannaya Gupta.\nAnd I am from M21404.</string>
-    <string name="contact">You can contact me at prannayagupta@gmail.com</string>
+    <string name="contact">You can contact me at h1810124@nushigh.edu.sg.</string>
     <string name="enjoy">I enjoy all of the following:</string>
     <string name="myInterests">Machine Learning\nPhysics\nPython\nCalculus\nLinear Algebra\nQuantum Physics\nSitcoms\nJupyter Notebook\nWeb Development\nApp Development</string>
     <string name="profileHead">My Profile</string>
