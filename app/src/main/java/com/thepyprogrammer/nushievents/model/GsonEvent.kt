@@ -1,6 +1,7 @@
 package com.thepyprogrammer.nushievents.model
 
 import com.google.gson.annotations.SerializedName
+import com.thepyprogrammer.nushievents.model.time.TimeRange
 
 data class GsonEvent(
         @SerializedName("title") val title: String,
