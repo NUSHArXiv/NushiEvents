@@ -4,7 +4,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.provider.CalendarContract
 import android.provider.CalendarContract.Events
-import android.util.Log
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.appbar.CollapsingToolbarLayout
@@ -12,8 +11,6 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.thepyprogrammer.nushievents.R
 import com.thepyprogrammer.nushievents.model.Database
 import java.time.LocalTime
-import java.time.ZoneId
-import java.time.ZoneOffset
 import java.util.*
 
 
@@ -40,11 +37,11 @@ class ItemDetailActivity : AppCompatActivity() {
                 val endTime = date.atTime(end)
 
                 val startMillis: Long = Calendar.getInstance().run {
-                    set(startTime.year, startTime.monthValue-1, startTime.dayOfMonth, startTime.hour, startTime.minute)
+                    set(startTime.year, startTime.monthValue - 1, startTime.dayOfMonth, startTime.hour, startTime.minute)
                     timeInMillis
                 }
                 val endMillis: Long = Calendar.getInstance().run {
-                    set(endTime.year, endTime.monthValue-1, endTime.dayOfMonth, endTime.hour, endTime.minute)
+                    set(endTime.year, endTime.monthValue - 1, endTime.dayOfMonth, endTime.hour, endTime.minute)
                     timeInMillis
                 }
 
@@ -55,14 +52,14 @@ class ItemDetailActivity : AppCompatActivity() {
                     putExtra(Events.ALL_DAY, allDay)
                     putExtra(Events.DESCRIPTION, Database.currentItem?.content)
                     putExtra(
-                        CalendarContract.EXTRA_EVENT_BEGIN_TIME,
-                        // date.atTime(begin).atZone(ZoneId.of("Singapore/Singapore")).toEpochSecond()
-                        startMillis
+                            CalendarContract.EXTRA_EVENT_BEGIN_TIME,
+                            // date.atTime(begin).atZone(ZoneId.of("Singapore/Singapore")).toEpochSecond()
+                            startMillis
                     )
                     putExtra(
-                        CalendarContract.EXTRA_EVENT_END_TIME,
-                        // date.atTime(end).atZone(ZoneId.of("Singapore/Singapore")).toEpochSecond()
-                        endMillis
+                            CalendarContract.EXTRA_EVENT_END_TIME,
+                            // date.atTime(end).atZone(ZoneId.of("Singapore/Singapore")).toEpochSecond()
+                            endMillis
                     )
                     putExtra(Events.EVENT_LOCATION, getString(R.string.nushAddress))
                 }
@@ -107,23 +104,23 @@ class ItemDetailActivity : AppCompatActivity() {
             val fragment = ItemDetailFragment()
 
             supportFragmentManager.beginTransaction()
-                .add(R.id.item_detail_container, fragment)
-                .commit()
+                    .add(R.id.item_detail_container, fragment)
+                    .commit()
         }
     }
 
     override fun onOptionsItemSelected(item: MenuItem) =
-        when (item.itemId) {
-            android.R.id.home -> {
-                // This ID represents the Home or Up button. In the case of this
-                // activity, the Up button is shown. For
-                // more details, see the Navigation pattern on Android Design:
-                //
-                // http://developer.android.com/design/patterns/navigation.html#up-vs-back
+            when (item.itemId) {
+                android.R.id.home -> {
+                    // This ID represents the Home or Up button. In the case of this
+                    // activity, the Up button is shown. For
+                    // more details, see the Navigation pattern on Android Design:
+                    //
+                    // http://developer.android.com/design/patterns/navigation.html#up-vs-back
 
-                navigateUpTo(Intent(this, ItemListActivity::class.java))
-                true
+                    navigateUpTo(Intent(this, ItemListActivity::class.java))
+                    true
+                }
+                else -> super.onOptionsItemSelected(item)
             }
-            else -> super.onOptionsItemSelected(item)
-        }
 }
