@@ -64,7 +64,7 @@ class ItemDetailActivity : AppCompatActivity() {
                         // date.atTime(end).atZone(ZoneId.of("Singapore/Singapore")).toEpochSecond()
                         endMillis
                     )
-                    putExtra(Events.EVENT_LOCATION, "NUS High School of Math and Science, 20 Clementi Ave 1, Singapore 129957")
+                    putExtra(Events.EVENT_LOCATION, getString(R.string.nushAddress))
                 }
 
                 startActivity(calIntent)
