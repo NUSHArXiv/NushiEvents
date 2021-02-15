@@ -19,7 +19,6 @@
             android:layout_height="?attr/actionBarSize"
             app:popupTheme="@style/Theme.NushiEvents.PopupOverlay"
             app:layout_scrollFlags="scroll|enterAlways"
-            app:navigationIcon="@drawable/ic_menu_24dp"
             style="@style/Widget.MaterialComponents.Toolbar.Primary"
             android:textAppearance="@style/TextAppearance.Widget.AppCompat.Toolbar.Title"
             app:menu="@menu/top_app_bar"
