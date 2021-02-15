@@ -39,7 +39,7 @@ class ItemListActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_item_list)
         database =
-            if (Database.currentOccurence == null) Database(resources.openRawResource(R.raw.db)) else Database.currentOccurence!!
+                if (Database.currentOccurence == null) Database(resources.openRawResource(R.raw.db)) else Database.currentOccurence!!
 
         val toolbar = findViewById<Toolbar>(R.id.toolbar)
         setSupportActionBar(toolbar)
@@ -47,7 +47,7 @@ class ItemListActivity : AppCompatActivity() {
 
         findViewById<FloatingActionButton>(R.id.fab).setOnClickListener { view ->
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show()
+                    .setAction("Action", null).show()
         }
 
         if (findViewById<NestedScrollView>(R.id.item_detail_container) != null) {
@@ -63,7 +63,7 @@ class ItemListActivity : AppCompatActivity() {
 
     private fun setupRecyclerView(recyclerView: RecyclerView) {
         val layoutManager = LinearLayoutManager(this)
-        if(Database.currentItem != null)
+        if (Database.currentItem != null)
             Database.currentOccurence?.indexOf(Database.currentItem)?.let { layoutManager.scrollToPosition(it) }
         recyclerView.layoutManager = layoutManager
         val adapter = EventItemAdapter(this, database, twoPane)
@@ -87,11 +87,11 @@ class ItemListActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem) = when (item.itemId) {
         R.id.action_info -> {
             Snackbar.make(
-                findViewById<FloatingActionButton>(R.id.fab),
-                "Replace with your own action",
-                Snackbar.LENGTH_LONG
+                    findViewById<FloatingActionButton>(R.id.fab),
+                    "Replace with your own action",
+                    Snackbar.LENGTH_LONG
             )
-                .setAction("Action", null).show()
+                    .setAction("Action", null).show()
             true
         }
         else -> false
