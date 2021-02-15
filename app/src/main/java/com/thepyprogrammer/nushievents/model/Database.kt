@@ -12,8 +12,7 @@ class Database internal constructor(jsonStream: InputStream) : ArrayList<Event>(
         var currentOccurence: Database? = null
         var currentItem: Event? = null
     }
-
-
+    
     init {
         val sc = Scanner(jsonStream)
         val s = StringBuilder()
