@@ -63,7 +63,12 @@ class AboutActivity : AppCompatActivity() {
         item = menu.findItem(R.id.action_contact)
         builder = SpannableStringBuilder("* Contact Me")
         // replace "*" with icon
-        builder.setSpan(ImageSpan(this, R.drawable.ic_email), 0, 1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+        builder.setSpan(
+            ImageSpan(this, R.drawable.ic_email),
+            0,
+            1,
+            Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
+        )
         item.title = builder
 
         return true
