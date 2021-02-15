@@ -5,7 +5,14 @@
     <item
         android:id="@+id/action_info"
         android:icon="@drawable/ic_info"
-        android:title="Additional Info"
+        android:title="About"
+        app:showAsAction="never">
+    </item>
+
+    <item
+        android:id="@+id/action_contact"
+        android:icon="@drawable/ic_email"
+        android:title="Contact"
         app:showAsAction="never">
     </item>
 
