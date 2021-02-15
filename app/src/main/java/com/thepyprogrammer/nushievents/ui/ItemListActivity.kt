@@ -15,7 +15,6 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.google.android.material.snackbar.Snackbar
 import com.thepyprogrammer.nushievents.R
 import com.thepyprogrammer.nushievents.model.Database
 
@@ -41,7 +40,7 @@ class ItemListActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_item_list)
         database =
-                if (Database.currentOccurence == null) Database(resources.openRawResource(R.raw.db)) else Database.currentOccurence!!
+            if (Database.currentOccurence == null) Database(resources.openRawResource(R.raw.db)) else Database.currentOccurence!!
 
         val toolbar = findViewById<Toolbar>(R.id.toolbar)
         setSupportActionBar(toolbar)
@@ -66,7 +65,8 @@ class ItemListActivity : AppCompatActivity() {
     private fun setupRecyclerView(recyclerView: RecyclerView) {
         val layoutManager = LinearLayoutManager(this)
         if (Database.currentItem != null)
-            Database.currentOccurence?.indexOf(Database.currentItem)?.let { layoutManager.scrollToPosition(it) }
+            Database.currentOccurence?.indexOf(Database.currentItem)
+                ?.let { layoutManager.scrollToPosition(it) }
         recyclerView.layoutManager = layoutManager
         val adapter = EventItemAdapter(this, database, twoPane)
         recyclerView.adapter = adapter
@@ -86,7 +86,12 @@ class ItemListActivity : AppCompatActivity() {
         item = menu.findItem(R.id.action_contact)
         builder = SpannableStringBuilder("* Contact Me")
         // replace "*" with icon
-        builder.setSpan(ImageSpan(this, R.drawable.ic_email), 0, 1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+        builder.setSpan(
+            ImageSpan(this, R.drawable.ic_email),
+            0,
+            1,
+            Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
+        )
         item.title = builder
 
         return true
