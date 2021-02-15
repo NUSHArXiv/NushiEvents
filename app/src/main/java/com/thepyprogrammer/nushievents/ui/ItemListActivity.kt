@@ -61,10 +61,11 @@ class ItemListActivity : AppCompatActivity() {
     }
 
     private fun setupRecyclerView(recyclerView: RecyclerView) {
-        recyclerView.layoutManager = LinearLayoutManager(this)
+        val layoutManager = LinearLayoutManager(this)
         if(Database.currentItem != null)
-            Database.currentOccurence?.indexOf(Database.currentItem)?.let { recyclerView.layoutManager?.scrollToPosition(it) }
-        recyclerView.adapter = EventItemAdapter(this, recyclerView, database, twoPane)
+            Database.currentOccurence?.indexOf(Database.currentItem)?.let { layoutManager.scrollToPosition(it) }
+        recyclerView.layoutManager = layoutManager
+        recyclerView.adapter = EventItemAdapter(this, database, twoPane)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
