@@ -421,7 +421,7 @@
       "26/08/2021 0800 - 1600"
     ],
 
-    "text": "",
+    "text": "Y1,Y5,Y6: 11.30am to 4pm\nY2,Y3: 8am to 12pm",
     "info": "<p><strong>26<sup>th</sup> Aug 2021</strong></p>\n<p><strong>0800</strong> - <strong>1600</strong></p>\n<table>\n<thead>\n<tr>\n<th>Year</th>\n<th>Time</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>Y1,Y5,Y6</td>\n<td>11.30am to 4pm</td>\n</tr>\n<tr>\n<td>Y2,Y3</td>\n<td>8am to 12pm</td>\n</tr>\n</tbody>\n</table>\n"
   },
   {
@@ -483,7 +483,7 @@
       "17/09/2021 1900 - 2100"
     ],
 
-    "text": "",
+    "text": "Will be at Theatrette.",
     "info": "<p><strong>17<sup>th</sup> Sep 2021</strong></p>\n<p><strong>1900</strong> - <strong>2100</strong></p>\n<p>Will be at Theatrette.</p>\n"
   },
   {
