@@ -1,4 +1,4 @@
-package com.thepyprogrammer.nushievents.ui
+package com.thepyprogrammer.nushievents.ui.list
 
 import android.content.Intent
 import android.view.LayoutInflater
@@ -13,9 +13,9 @@ import com.thepyprogrammer.nushievents.ui.detail.ItemDetailActivity
 import com.thepyprogrammer.nushievents.ui.detail.ItemDetailFragment
 
 class EventItemAdapter(
-    val parentActivity: ItemListActivity,
-    private val values: List<Event>,
-    val twoPane: Boolean
+        val parentActivity: ItemListActivity,
+        private val values: List<Event>,
+        val twoPane: Boolean
 ) :
     RecyclerView.Adapter<EventItemAdapter.ViewHolder>() {
 
