@@ -1,6 +1,7 @@
 package com.thepyprogrammer.nushievents.ui.list
 
 import android.content.Intent
+import android.widget.Toast
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.thepyprogrammer.nushievents.R
@@ -34,6 +35,12 @@ class SwipeToOpenCallback(
                 .replace(R.id.item_detail_container, fragment)
                 .commit()
         } else {
+            val toast = Toast.makeText(
+                v.context,
+                "Moving to Interests",
+                Toast.LENGTH_LONG
+            )
+            toast.show()
             val intent = Intent(v.context, ItemDetailActivity::class.java)
             v.context.startActivity(intent)
         }
