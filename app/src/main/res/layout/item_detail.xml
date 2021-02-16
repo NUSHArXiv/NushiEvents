@@ -7,4 +7,4 @@
     android:padding="16dp"
     android:textIsSelectable="true"
     style="?android:attr/textAppearanceLarge"
-    tools:context=".ui.ItemDetailFragment" />
+    tools:context=".ui.detail.ItemDetailFragment" />
