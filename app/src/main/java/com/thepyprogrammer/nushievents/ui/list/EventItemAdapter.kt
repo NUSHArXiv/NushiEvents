@@ -32,7 +32,7 @@ class EventItemAdapter(
         } else {
             val toast = Toast.makeText(
                 v.context,
-                "Moving to About Page",
+                "Moving to "+item.title,
                 Toast.LENGTH_LONG
         )
             toast.show()
