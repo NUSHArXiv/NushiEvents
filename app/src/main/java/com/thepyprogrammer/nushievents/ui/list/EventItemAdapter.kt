@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.thepyprogrammer.nushievents.R
 import com.thepyprogrammer.nushievents.model.Database
@@ -29,6 +30,12 @@ class EventItemAdapter(
                 .replace(R.id.item_detail_container, fragment)
                 .commit()
         } else {
+            val toast = Toast.makeText(
+                v.context,
+                "Moving to About Page",
+                Toast.LENGTH_LONG
+        )
+            toast.show()
             val intent = Intent(v.context, ItemDetailActivity::class.java)
             v.context.startActivity(intent)
         }
