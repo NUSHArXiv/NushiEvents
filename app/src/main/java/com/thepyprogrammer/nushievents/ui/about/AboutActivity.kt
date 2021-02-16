@@ -1,4 +1,4 @@
-package com.thepyprogrammer.nushievents.ui
+package com.thepyprogrammer.nushievents.ui.about
 
 import android.content.Intent
 import android.net.Uri
@@ -11,6 +11,7 @@ import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import com.thepyprogrammer.nushievents.R
+import com.thepyprogrammer.nushievents.ui.ItemListActivity
 
 class AboutActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
