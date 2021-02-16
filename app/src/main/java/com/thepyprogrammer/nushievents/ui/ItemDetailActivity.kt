@@ -128,7 +128,7 @@ class ItemDetailActivity : AppCompatActivity() {
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        menuInflater.inflate(R.menu.top_app_bar, menu)
+        menuInflater.inflate(R.menu.detail_app_bar, menu)
 
         var item: MenuItem = menu.findItem(R.id.action_info)
         var builder = SpannableStringBuilder("* Share")
