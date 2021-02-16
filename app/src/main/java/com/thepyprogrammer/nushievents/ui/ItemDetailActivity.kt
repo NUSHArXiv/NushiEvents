@@ -130,7 +130,7 @@ class ItemDetailActivity : AppCompatActivity() {
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.detail_app_bar, menu)
 
-        var item: MenuItem = menu.findItem(R.id.action_info)
+        var item: MenuItem = menu.findItem(R.id.action_share)
         var builder = SpannableStringBuilder("* Share")
         // replace "*" with icon
         builder.setSpan(
