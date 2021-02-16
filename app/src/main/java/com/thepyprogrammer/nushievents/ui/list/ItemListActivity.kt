@@ -8,6 +8,7 @@ import android.text.Spanned
 import android.text.style.ImageSpan
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.widget.NestedScrollView
@@ -101,6 +102,12 @@ class ItemListActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem) = when (item.itemId) {
         R.id.action_info -> {
+            val toast = Toast.makeText(
+                    applicationContext,
+                    "Moving to About Page",
+                    Toast.LENGTH_LONG
+            )
+            toast.show()
             val intent = Intent(this@ItemListActivity, AboutActivity::class.java)
             startActivity(intent)
             true
