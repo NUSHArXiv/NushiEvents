@@ -16,7 +16,7 @@ import com.google.android.material.appbar.CollapsingToolbarLayout
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.thepyprogrammer.nushievents.R
 import com.thepyprogrammer.nushievents.model.Database
-import com.thepyprogrammer.nushievents.ui.ItemListActivity
+import com.thepyprogrammer.nushievents.ui.list.ItemListActivity
 import com.thepyprogrammer.nushievents.ui.about.AboutActivity
 import java.time.LocalTime
 import java.util.*
