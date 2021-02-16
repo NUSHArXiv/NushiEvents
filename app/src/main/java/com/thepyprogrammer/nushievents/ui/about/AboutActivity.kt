@@ -8,6 +8,7 @@ import android.text.Spanned
 import android.text.style.ImageSpan
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import com.thepyprogrammer.nushievents.R
@@ -33,11 +34,22 @@ class AboutActivity : AppCompatActivity() {
                 // more details, see the Navigation pattern on Android Design:
                 //
                 // http://developer.android.com/design/patterns/navigation.html#up-vs-back
-
+                val toast = Toast.makeText(
+                        applicationContext,
+                        "Moving back to Main Page",
+                        Toast.LENGTH_LONG
+                )
+                toast.show()
                 navigateUpTo(Intent(this, ItemListActivity::class.java))
                 true
             }
             R.id.action_info -> {
+                val toast = Toast.makeText(
+                        applicationContext,
+                        "Moving to About Page",
+                        Toast.LENGTH_LONG
+                )
+                toast.show()
                 val intent = Intent(this@AboutActivity, AboutActivity::class.java)
                 startActivity(intent)
                 true
