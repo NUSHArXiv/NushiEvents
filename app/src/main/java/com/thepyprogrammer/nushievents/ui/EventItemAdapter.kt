@@ -9,6 +9,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.thepyprogrammer.nushievents.R
 import com.thepyprogrammer.nushievents.model.Database
 import com.thepyprogrammer.nushievents.model.Event
+import com.thepyprogrammer.nushievents.ui.detail.ItemDetailActivity
+import com.thepyprogrammer.nushievents.ui.detail.ItemDetailFragment
 
 class EventItemAdapter(
     val parentActivity: ItemListActivity,
