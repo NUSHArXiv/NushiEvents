@@ -34,7 +34,7 @@
                 android:scaleType="centerCrop"
                 android:fitsSystemWindows="true"
                 app:layout_collapseMode="parallax"
-                android:src="@drawable/nush2"/>
+                android:src="@drawable/nush"/>
 
 
             <androidx.appcompat.widget.Toolbar
