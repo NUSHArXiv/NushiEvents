@@ -41,7 +41,7 @@ class ItemDetailFragment : Fragment() {
     ): View? {
         val rootView = inflater.inflate(R.layout.item_detail, container, false)
 
-        // Show the dummy content as text in a TextView.
+        // Show the html in the WebView, accompanied with CSS
         item?.let {
             val sc = Scanner(resources.openRawResource(R.raw.github_markdown))
             val scBuilder = StringBuilder()
